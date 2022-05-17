@@ -3,6 +3,7 @@ js library create UI component based front-end app
 
 component? view with functionalities
 client-side web app?
+spa: single page app 
 
 
 
