@@ -1,25 +1,29 @@
-import { createElement } from "react"
-const descriptionHovered = () => {
-    alert('description div clicked')
-}
-export const Description = () => {
-    // var descDiv = document.createElement('div')
-    // descDiv.setAttribute('id', 'descDiv')
-    // descDiv.setAttribute('style', "background-color:aqua; font-size:medium")
-    // descDiv.innerText = "Component is an unit of design plus code"
-    // descDiv.addEventListener('mouseover', descriptionHovered)
+//import { createElement } from "react"
+import React from 'react'
 
-    const descDiv = createElement(
-        'div',
-        {
-            id: 'descDiv',
-            style: {
-                backgroundColor: 'aqua',
-                fontSize: 'medium'
-            },
-            onmouseover: descriptionHovered
-        }
-    );
+export const Description = () => {
+    const descriptionHovered = () => {
+        alert('description div clicked')
+    }
+
+    // const descDiv = createElement(
+    //     'div',
+    //     {
+    //         id: 'descDiv',
+    //         style: {
+    //             backgroundColor: 'aqua',
+    //             fontSize: 'medium'
+    //         },
+    //         onMouseOver: descriptionHovered
+    //     },
+    //     "Component is an unit of design plus code"
+    // );  
+
+    const descDiv = (
+        <div id="descDiv" style={{ backgroundColor: 'aqua', fontSize: 'medium' }} onMouseOver={descriptionHovered}>
+            Component is an unit of design plus code
+        </div>
+    )
 
     return descDiv
 }

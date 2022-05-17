@@ -59,6 +59,14 @@ npm install @babel/plugin-transform-modules-amd
 D: development depedency (--save-dev)
 complete dependency: (--save) or nothing
 
+>npm i create-react-app -g
+>create-react-app my-first-app
+
+or...
+>npx create-react-app my-first-app
+
+
+
 
 
 
