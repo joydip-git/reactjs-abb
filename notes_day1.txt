@@ -65,7 +65,66 @@ complete dependency: (--save) or nothing
 or...
 >npx create-react-app my-first-app
 
+prop
+state
 
+to define and validate properties of a component: prop-types
+>npm i prop-types
+
+import PropTypes from 'prop-types'
+function Comp(){}
+
+Comp.propTypes={
+	prop-name1:PropTypes.data-type.isRequired,
+	prop-name2:PropTypes.data-type,
+}
+
+react js:
+	a. functional components
+	b. class components
+
+//1. object literal syntax
+const joydipObj = {
+
+	//value properties
+	name:'Joydip',
+	id:1,
+	salary:1000,
+
+	//functional property
+	print:function(){
+		return this.name +' '+this.id+' ' +this.salary
+	}
+}
+
+//2. constructor function
+function person(name, id, salary){
+	this.id = id
+	this.name = name
+	this.salary = salary
+	this.print = function(){
+		return this.name +' '+this.id+' ' +this.salary
+	}
+}
+
+const joydipPerson = new person('Joydip',1,1000)
+
+class Person{
+   constructor(name, id, salary){
+	this.id = id
+	this.name = name
+	this.salary = salary	
+   }
+   print(){		
+       return this.name +' '+this.id+' ' +this.salary
+   }
+}
+
+1. component maintains a data in the state
+2. anyone updates the state data, react detects it
+	a. in order to update state data, use built-in method setState() from Component class
+		- update the state data async and when done, calles the render funtion to recreate the VDOM
+3. immediately calles the render() function of the component again
 
 
 
