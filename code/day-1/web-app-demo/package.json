@@ -1,0 +1,21 @@
+{
+    "name": "web-app-demo",
+    "version": "1.0.0",
+    "author": {
+        "name": "joydip"
+    },
+    "license": "MIT",
+    "keywords": [
+        "JS"
+    ],
+    "devDependencies": {
+        "@babel/cli": "^7.17.10",
+        "@babel/core": "^7.17.12",
+        "@babel/plugin-transform-modules-amd": "^7.17.12",
+        "lite-server": "^2.6.1"
+    },
+    "scripts": {
+        "compile": "babel src --out-dir build",
+        "start": "lite-server"
+    }
+}
