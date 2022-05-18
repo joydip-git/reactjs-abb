@@ -1,3 +1,4 @@
+//import Main from '../../Main';
 import ProductContainer from '../products/ProductContainer';
 import './App.css';
 
@@ -6,6 +7,7 @@ function App() {
   return (
     <div className='container'>
       <ProductContainer />
+      {/* <Main /> */}
     </div>
   );
 }

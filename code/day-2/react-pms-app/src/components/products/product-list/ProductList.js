@@ -19,7 +19,7 @@ function ProductList(props) {
                 <tbody>
                     {
                         props.productRecords.map(
-                            (p) => {
+                            (p, index) => {
                                 return <ProductRow
                                     productInfo={p}
                                     key={p.productId}

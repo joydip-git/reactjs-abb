@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component, createRef } from "react";
 import FilterProduct from "../../components/products/filter-product/FilterProduct";
 import ProductList from "../../components/products/product-list/ProductList";
 import ViewProduct from "../../components/products/view-product/ViewProduct";
@@ -8,6 +8,7 @@ class ProductContainer extends Component {
     constructor() {
         super()
         console.log('[PC] created')
+        this.filterProductInputRef = createRef()
     }
     state = {
         products: [],
@@ -40,6 +41,7 @@ class ProductContainer extends Component {
         }
 
     }
+
     selectProductIdHandler = (pid) => {
         //alert(pid.toString())
         this.setState({
@@ -49,17 +51,23 @@ class ProductContainer extends Component {
 
     componentDidMount() {
         console.log('[PC] mounted')
+        //console.log(this.filterProductInputRef.current)        
         // setTimeout(
         //     () => {
         getProducts()
             .then(
                 (axiosResponse) => {
-                    this.setState({
-                        products: axiosResponse.data,
-                        filteredProducts: axiosResponse.data,
-                        fetching: false,
-                        errorMessage: ''
-                    })
+                    this.setState(
+                        {
+                            products: axiosResponse.data,
+                            filteredProducts: axiosResponse.data,
+                            fetching: false,
+                            errorMessage: ''
+                        },
+                        () => {
+                            this.filterProductInputRef.current.focus()
+                        }
+                    )
                 },
                 (errResponse) => {
                     this.setState({
@@ -96,6 +104,7 @@ class ProductContainer extends Component {
                         <FilterProduct
                             filterValue={this.state.filterText}
                             filterHandler={this.filterProductsHandler}
+                            ref={this.filterProductInputRef}
                         />
                         <br />
                         <ProductList

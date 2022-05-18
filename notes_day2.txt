@@ -91,3 +91,8 @@ PureComponent's shouldComponentUpdate do not do deep comparison of reference typ
 shouldComponentUpdate(newProps, newState){
    if(newProps.data.id !== this.props.data.id){}
 }
+
+
+access DOM elements:
+	a. callback ref
+	b. createRef()
