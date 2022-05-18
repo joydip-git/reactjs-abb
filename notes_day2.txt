@@ -50,8 +50,44 @@ functional Some(){
 
 
 
-class component:
-	mounting: 
+class component lifecycle:
+
+1. mounting: the very first time a component is rendered in the browser (mounted) 
 	a. constructor: ctor called, object created 
 	b. render: react element from the component is returned and
-	c. componentDidMount: then VDOM is translated into ADOM by render() method of Root object of React (index.js) [JSX elements are converted into HTML elements and displayed in the browser]
+	c. componentDidMount: then VDOM is translated into ADOM by render() method of Root object of React (index.js) [JSX elements are converted into HTML elements and displayed in the browser]. Write side-effect causing code here. executed only one time.
+
+2. update: every time after the 1st stage (mounting), the component gets re-rendered due to 
+		i. state data update
+		ii. new property data received
+	a. shouldComponentUpdate()=>boolean
+	b. render()
+	c. componentDidUpdate:
+		Write side-effect causing code here.
+		executed every time except the very first time (mounting)
+
+
+shouldComponentUpdate(newProps, newState){
+   if(newProps.selectedProductId !== this.props.selectedProductId){}
+}
+
+{
+   selectedProductId:1
+}
+{
+   selectedProductId:2
+}
+
+{
+   data: {name:'anil', id:1}
+}
+
+{
+   data: {name:'anil', id:1}
+}
+
+PureComponent's shouldComponentUpdate do not do deep comparison of reference types (objects)
+
+shouldComponentUpdate(newProps, newState){
+   if(newProps.data.id !== this.props.data.id){}
+}

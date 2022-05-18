@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { memo } from "react";
 import ProductRow from "../product-row/ProductRow";
 
 function ProductList(props) {
@@ -20,7 +21,8 @@ function ProductList(props) {
                         props.productRecords.map(
                             (p) => {
                                 return <ProductRow
-                                    productInfo={p} key={p.productId}
+                                    productInfo={p}
+                                    key={p.productId}
                                     selectedProductHandler={props.selectHandler}
                                 />
                             }
@@ -37,4 +39,4 @@ ProductList.propTypes = {
     selectHandler: PropTypes.func.isRequired
 }
 
-export default ProductList
+export default memo(ProductList)

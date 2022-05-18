@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { Component } from 'react'
+import { Component, PureComponent } from 'react'
 import { getProductById } from '../../../services/productService'
 // function ViewProduct(props) {
 //     console.log('[VP] rendered')
@@ -12,7 +12,7 @@ import { getProductById } from '../../../services/productService'
 // ViewProduct.propTypes = {
 //     selectedProductId: PropTypes.number.isRequired
 // }
-class ViewProduct extends Component {
+class ViewProduct extends PureComponent {
     constructor() {
         super()
         console.log('[VP] created')
@@ -44,11 +44,23 @@ class ViewProduct extends Component {
                 }
             )
     }
+    // shouldComponentUpdate(newProps, newState) {
+    //     if (this.state.product === null || (newProps.selectedProductId !== this.props.selectedProductId && newState.product.productId !== newProps.selectedProductId)) {
+
+    //         return true
+    //     }
+    //     return false
+    // }
     componentDidMount() {
+        console.log('[VP] mounted')
         this.fetchProduct()
     }
-    componentDidUpdate() {
-        this.fetchProduct()
+    componentDidUpdate(oldProps, oldState) {
+        // console.log(this.state)
+        // console.log(this.props)
+        console.log('[VP] getting updated')
+        if (this.props.selectedProductId !== oldProps.selectedProductId)
+            this.fetchProduct()
     }
     render() {
         console.log('[VP] rendered')

@@ -11,11 +11,35 @@ class ProductContainer extends Component {
     }
     state = {
         products: [],
+        filteredProducts: [],
         fetching: true,
         errorMessage: '',
-        selectedId: 0
+        selectedId: 0,
+        filterText: ''
     }
 
+    filterProductsHandler = (filterVal) => {
+
+        //alert(filterVal)
+        const copyProducts = [...this.state.products]
+        if (filterVal !== '') {
+            const filteredProducts = copyProducts.filter(p => p.productName.toLocaleLowerCase().indexOf(filterVal.toLocaleLowerCase()) !== -1)
+            this.setState({
+                filterText: filterVal,
+                filteredProducts: filteredProducts
+            })
+        } else {
+            this.setState(
+                (prevState) => {
+                    return {
+                        filterText: '',
+                        filteredProducts: prevState.products
+                    }
+                }
+            )
+        }
+
+    }
     selectProductIdHandler = (pid) => {
         //alert(pid.toString())
         this.setState({
@@ -32,6 +56,7 @@ class ProductContainer extends Component {
                 (axiosResponse) => {
                     this.setState({
                         products: axiosResponse.data,
+                        filteredProducts: axiosResponse.data,
                         fetching: false,
                         errorMessage: ''
                     })
@@ -59,7 +84,7 @@ class ProductContainer extends Component {
             containerDesign = <span>Loading...</span>
         } else if (this.state.errorMessage !== '') {
             containerDesign = <span>{this.state.errorMessage}</span>
-        } else if (this.state.products.length === 0) {
+        } else if (this.state.filteredProducts.length === 0) {
             containerDesign = <span>No products found..</span>
         } else {
             containerDesign = (
@@ -68,10 +93,13 @@ class ProductContainer extends Component {
                         Product Management System
                     </div>
                     <div className="panel panel-body">
-                        <FilterProduct />
+                        <FilterProduct
+                            filterValue={this.state.filterText}
+                            filterHandler={this.filterProductsHandler}
+                        />
                         <br />
                         <ProductList
-                            productRecords={this.state.products}
+                            productRecords={this.state.filteredProducts}
                             selectHandler={this.selectProductIdHandler} />
                         <br />
                         {
