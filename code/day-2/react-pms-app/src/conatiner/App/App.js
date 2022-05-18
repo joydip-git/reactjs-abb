@@ -2,11 +2,9 @@ import ProductContainer from '../products/ProductContainer';
 import './App.css';
 
 function App() {
-
+  console.log('[App] rendered')
   return (
-    <div className="App">
-      Product Management System
-      <br />
+    <div className='container'>
       <ProductContainer />
     </div>
   );

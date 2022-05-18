@@ -1,4 +1,5 @@
 function FilterProduct() {
+    console.log('[FP] rendered')
     return (
         <div>
             <span>Filter By:&nbsp;</span>

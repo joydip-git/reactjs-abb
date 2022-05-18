@@ -47,3 +47,11 @@ functional Some(){
 		<Comp val={100} />
 	)
 }
+
+
+
+class component:
+	mounting: 
+	a. constructor: ctor called, object created 
+	b. render: react element from the component is returned and
+	c. componentDidMount: then VDOM is translated into ADOM by render() method of Root object of React (index.js) [JSX elements are converted into HTML elements and displayed in the browser]
