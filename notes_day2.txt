@@ -1,0 +1,49 @@
+1. class component
+
+class Comp extends Component{
+	constructor(){
+		super()
+		this.state={
+			prop1:value1,
+			prop2:valu2,
+			......
+		}
+	}
+
+	updateStateData=()=>{
+		const copy = {...this.state}
+		const ns = {prop1:newValue}
+		const s = {...copy,...ns}
+		
+		this.setState({ prop1:newValue})
+		
+		this.setState(
+			(prevState)=>{
+				const newState={
+					prop1:prevState.value1+newValue
+				}
+				return newState
+			},
+			()=>{
+				//
+			}
+		)
+		this.setState(
+			(prevState, props)=>{
+				const newState={
+					prop1:prevState.value1+newValue+props.val
+				}
+				return newState
+			},
+			()=>{
+				//
+			}
+		)
+	}	
+}
+
+functional Some(){
+	const design = (
+		<Comp val={100} />
+	)
+}
